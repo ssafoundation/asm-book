@@ -1,0 +1,17 @@
+.manage-book-btn button {
+    border: none;
+    background: none;
+    margin: 0px 0px 0px 6px;
+    padding: 7px;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.manage-book-btn button:nth-child(1) {
+    background: #3bc83b;
+}
+
+.manage-book-btn button:nth-child(2) {
+    background: #ff444a;
+}

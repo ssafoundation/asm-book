@@ -1,0 +1,30 @@
+.book-now-form input {
+    width: 100%;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+input.btn.btn-primary.btnTextColor {
+    width: unset;
+    height: 40px;
+}
+
+.deshboard-details h3 {
+    margin-bottom: 50px;
+    margin-top: 30px;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.book-now-form input {
+    width: 100%;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    padding: 0 10px;
+    border-radius: 5px;
+    height: 45px;
+}
+
+input.bookFile {
+    border: none;
+}
