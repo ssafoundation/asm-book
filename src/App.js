@@ -10,39 +10,45 @@ import AddBook from './components/Admin/AddBook/AddBook';
 import BookEdit from './components/Admin/BookEdit/BookEdit';
 import Order from './components/Order/Order';
 import Checkout from './components/checkout/Checkout';
+import { createContext, useState } from 'react';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
+export const UserContext = createContext();
 
 function App() {
+  const [loggedInUser, setLoggedInUser] = useState({})
   return (
-    <Router>
-      <div className="container-fluid">
-        {/* <Navbar /> */}
-        <Switch>
-          <Route path="/admin">
-            <Admin />
-          </Route>
-          <Route path="/checkout/:id">
-            <Checkout />
-          </Route>
-          <Route path="/managebooks">
-            <ManageBooks />
-          </Route>
-          <Route path="/addbook">
-            <AddBook />
-          </Route>
-          <Route path="/order">
-            <Order />
-          </Route>
-          <Route path="/editbook">
-            <BookEdit />
-          </Route>
-          <Route exect path="/">
-            <Home />
-          </Route>
-        </Switch>
+    <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
+      <Router>
+        <div className="container-fluid ">
+          {/* <Navbar /> */}
+          <Switch>
+            <Route path="/admin">
+              <Admin />
+            </Route>
+            <PrivateRoute path="/checkout/:id">
+              <Checkout />
+            </PrivateRoute>
+            <PrivateRoute path="/managebooks">
+              <ManageBooks />
+            </PrivateRoute>
+            <PrivateRoute path="/addbook">
+              <AddBook />
+            </PrivateRoute>
+            <PrivateRoute path="/order">
+              <Order />
+            </PrivateRoute>
+            <PrivateRoute path="/editbook">
+              <BookEdit />
+            </PrivateRoute>
+            <Route exect path="/">
+              <Home />
+            </Route>
+          </Switch>
 
-      </div>
-    </Router>
+        </div>
+      </Router>
+    </UserContext.Provider>
   );
 }
 

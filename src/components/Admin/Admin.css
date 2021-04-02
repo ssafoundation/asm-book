@@ -26,3 +26,22 @@ aside.admin-dashboard-wrap {
     display: inline-block;
     margin-right: 15px;
 }
+
+.login-profile {
+    display: flex;
+    align-items: center;
+}
+
+.account-details {
+    margin-left: 20px;
+}
+
+.account-details h1 {
+    text-transform: uppercase;
+}
+
+.login-profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}

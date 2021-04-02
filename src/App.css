@@ -8,3 +8,26 @@
     justify-content: center;
     height: 180px;
 }
+
+img.profile-logo {
+    width: 25px;
+    border-radius: 50%;
+}
+
+.shingle-product img {
+    height: 230px;
+    width: unset;
+}
+
+.shingle-product {
+    margin-bottom: 30px;
+}
+
+h1.site-title {
+    font-size: 34px;
+    color: #ffc107;
+}
+
+h1.site-title span {
+    color: #2abd63;
+}

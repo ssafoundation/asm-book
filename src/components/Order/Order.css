@@ -1,3 +1,25 @@
 .order-table-wrap {
     padding: 50px 25px;
 }
+
+.order-profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.profile-left {
+    margin-right: 30px;
+}
+
+.profile-left img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #007bff;
+    padding: 7px;
+}
+
+.profile-right h4 {
+    text-transform: uppercase;
+}

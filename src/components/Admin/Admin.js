@@ -2,7 +2,8 @@ import React from 'react';
 
 import './Admin.css'
 import AdminNav from './AdminNav/AdminNav';
-import Login from './Login/Login.js';
+import Login from './Login/Login'
+
 const Admin = () => {
     return (
         <>

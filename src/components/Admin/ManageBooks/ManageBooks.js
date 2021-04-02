@@ -6,16 +6,28 @@ import AdminNav from '../AdminNav/AdminNav';
 import './ManageBook.css'
 
 const ManageBooks = () => {
+    const [reloadData, setReloadData] = useState(false);
+
     const [books, setBooks] = useState([])
     // const history = useHistory()
     useEffect(() => {
-
         fetch(`http://localhost:4200/showbook`)
             .then(res => res.json())
             .then(data => setBooks(data))
-    }, [])
-    const handleBookDelete = () => {
-        console.log('আমারে ক্লিক মারছে');
+    }, [reloadData])
+
+    const handleBookDelete = (id) => {
+        fetch(`http://localhost:4200/delete/${id}`, {
+            method: 'DELETE',
+
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data) {
+                    setReloadData(true)
+                }
+            })
     }
     console.log(books);
     return (
@@ -48,7 +60,7 @@ const ManageBooks = () => {
                                     <td>{books.BookPrice}</td>
                                     <td className='manage-book-btn'>
                                         <button className="fas fa-edit"></button>
-                                        <button onClick={() => handleBookDelete(`${books._id}`)} className="fas fa-trash-alt"></button>
+                                        <button onClick={() => handleBookDelete(books._id)} className="fas fa-trash-alt"></button>
                                     </td>
                                 </tr>
                             </tbody>)

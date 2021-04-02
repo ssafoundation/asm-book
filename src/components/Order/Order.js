@@ -1,22 +1,36 @@
-import React from 'react';
-import { Table } from 'react-bootstrap';
+import React, { useContext, useEffect, useState } from 'react';
+import { Spinner, Table } from 'react-bootstrap';
+import { UserContext } from '../../App';
 // import { useParams } from 'react-router';
 import Navbar from '../Navbar/Navbar';
 import './Order.css'
 const Order = () => {
-    // const { books } = useParams()
-    // const [details, setDetails] = useState({});
-    // useEffect(() => {
-    //     const url = `https://restcountries.eu/rest/v2/name/${books}`
-    //     fetch(url)
-    //         .then(res => res.json())
-    //         .then(data => setDetails(data[0]))
-
-    // });
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    const [orders, setOrders] = useState([])
+    const [preloder, setPreloder] = useState(false)
+    useEffect(() => {
+        fetch('http://localhost:4200/showOrder?email=' + loggedInUser.email)
+            .then(res => res.json())
+            .then(data => setOrders(data))
+        setPreloder(true)
+    }, [])
+    const totalPrice = orders.reduce(
+        (total, order) => total + Number(order.price), 0
+    )
     return (
         <div className='container'>
             <Navbar />
             <div className='order-table-wrap'>
+                <div className="order-profile">
+                    <div className="profile-left">
+                        <img src={loggedInUser.URL} alt="" />
+                    </div>
+                    <div className="profile-right">
+                        <h4>{loggedInUser.name}</h4>
+                        <p>{loggedInUser.email}</p>
+                    </div>
+                </div>
+
                 <Table responsive>
                     <thead>
                         <tr>
@@ -25,17 +39,27 @@ const Order = () => {
                             <th>Price</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Favorite Book</td>
-                            <td>1</td>
-                            <td>100</td>
-                        </tr>
-                        <tr>
-                            <td colSpan="2">Total</td>
-                            <td>Table cell</td>
-                        </tr>
-                    </tbody>
+                    {
+                        preloder ? (<tbody>
+                            {
+                                orders.map((order, index) => <tr key={index}>
+                                    <td>{order.name}</td>
+                                    <td>1</td>
+                                    <td>{order.price}</td>
+                                </tr>
+
+                                )
+                            }
+                            <tr>
+                                <td colSpan="2">Total</td>
+                                <td>${totalPrice}</td>
+                            </tr>
+                        </tbody>) : <div className="preloader">
+                            <Spinner animation="border" variant="primary" />
+                        </div>
+                    }
+
+
                 </Table>
             </div>
         </div>

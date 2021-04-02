@@ -67,8 +67,6 @@ const AddBook = () => {
                             <div className="col-lg-6">
                                 <input className="btn btn-primary btnTextColor" type="submit" />
                             </div>
-
-
                         </form>
                     </div>
 
